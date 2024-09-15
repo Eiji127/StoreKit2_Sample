@@ -9,34 +9,69 @@ import SwiftUI
 import StoreKit
 
 struct ContentView: View {
-    let productIds = ["pro_monthly", "pro_yearly", "pro_lifetime"]
-    @State private var products: [Product] = []
+    
+    @EnvironmentObject private var purchaseManager: PurchaseManager
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Pruducts")
-            ForEach(products, id: \.self) { product in
+            if purchaseManager.hasUnlockedPro {
+                Text("Thank you for purchasing pro!")
+            } else {
+                Text("Pruducts")
+                ForEach(purchaseManager.products, id: \.self) { product in
+                    Button {
+                        Task {
+                            do {
+                                try await purchaseManager.purchase(product)
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } label: {
+                        Text("\(product.displayPrice) - \(product.displayName)")
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background(.blue)
+                            .clipShape(Capsule())
+                    }
+                }
+                
                 Button {
-                    
+                    Task {
+                        do {
+                            try await AppStore.sync()
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
-                    Text("\(product.displayPrice) - \(product.displayName)")
+                    Text("Restore Purchase")
                 }
             }
         }
         .padding()
         .task {
             do {
-                try await loadProducts()
+                try await purchaseManager.loadProducts()
             } catch {
                 print(error)
             }
         }
     }
-    
-    private func loadProducts() async throws {
-        self.products = try await Product.products(for: productIds)
-    }
 }
+
+/*
+ public enum PurchaseResult {
+ case success(VerificationResult<Transaction>)
+ case userCancelled
+ case pending
+ }
+ 
+ public enum VerificationResult<SignedType> {
+ case unverified(SignedType, VerificationResult<SignedType>.VerificationError)
+ case verified(SignedType)
+ }
+ */
 
 #Preview {
     ContentView()
