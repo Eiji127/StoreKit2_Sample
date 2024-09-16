@@ -15,6 +15,7 @@
 		F1A671042C955696006FCC84 /* StoreKit2_sampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A671032C955696006FCC84 /* StoreKit2_sampleUITests.swift */; };
 		F1A671062C955696006FCC84 /* StoreKit2_sampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A671052C955696006FCC84 /* StoreKit2_sampleUITestsLaunchTests.swift */; };
 		F1A671142C967E0E006FCC84 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A671132C967E0E006FCC84 /* PurchaseManager.swift */; };
+		F1A671162C969BFB006FCC84 /* EntitlementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A671152C969BFB006FCC84 /* EntitlementManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		F1A671052C955696006FCC84 /* StoreKit2_sampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKit2_sampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F1A671122C95573B006FCC84 /* MainConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = MainConfiguration.storekit; sourceTree = "<group>"; };
 		F1A671132C967E0E006FCC84 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		F1A671152C969BFB006FCC84 /* EntitlementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				F1A670E82C955695006FCC84 /* StoreKit2_sampleApp.swift */,
 				F1A670EA2C955695006FCC84 /* ContentView.swift */,
+				F1A671152C969BFB006FCC84 /* EntitlementManager.swift */,
 				F1A671132C967E0E006FCC84 /* PurchaseManager.swift */,
 				F1A670EC2C955696006FCC84 /* Assets.xcassets */,
 				F1A670EE2C955696006FCC84 /* Preview Content */,
@@ -265,6 +268,7 @@
 				F1A670EB2C955695006FCC84 /* ContentView.swift in Sources */,
 				F1A671142C967E0E006FCC84 /* PurchaseManager.swift in Sources */,
 				F1A670E92C955695006FCC84 /* StoreKit2_sampleApp.swift in Sources */,
+				F1A671162C969BFB006FCC84 /* EntitlementManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

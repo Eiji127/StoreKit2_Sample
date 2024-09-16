@@ -10,24 +10,23 @@ import StoreKit
 
 @MainActor
 class PurchaseManager: ObservableObject {
+    /// 製品IDリスト
     let productIds = ["pro_monthly", "pro_yearly", "pro_lifetime"]
-    
     @Published private(set) var purchasedProductIDs = Set<String>()
-    
-    /// 
+    /// 製品情報
     @Published private(set) var products: [Product] = []
-    
     /// 製品の購入取得フラグ
     private var productsLoaded = false
-    
     /// 購入製品の有無
     var hasUnlockedPro: Bool {
         return !self.purchasedProductIDs.isEmpty
     }
-    
     private var updates: Task<Void, Never>? = nil
+    /// 製品購入時に発生するアンロックされた機能の状態を制御するクラス
+    private let entitlementManager: EntitlementManager
     
-    init() {
+    init(entitlementManager: EntitlementManager) {
+        self.entitlementManager = entitlementManager
         updates = observeTransactionUpdates()
     }
     
@@ -78,6 +77,8 @@ class PurchaseManager: ObservableObject {
                 self.purchasedProductIDs.remove(transaction.productID)
             }
         }
+        
+        self.entitlementManager.hasPro = !self.purchasedProductIDs.isEmpty
     }
     
     /// アプリの外部で作成されたトランザクションの監視処理

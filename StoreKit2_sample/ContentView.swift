@@ -9,12 +9,12 @@ import SwiftUI
 import StoreKit
 
 struct ContentView: View {
-    
+    @EnvironmentObject private var entitlementManager: EntitlementManager
     @EnvironmentObject private var purchaseManager: PurchaseManager
     
     var body: some View {
         VStack(spacing: 20) {
-            if purchaseManager.hasUnlockedPro {
+            if entitlementManager.hasPro {
                 Text("Thank you for purchasing pro!")
             } else {
                 Text("Pruducts")
